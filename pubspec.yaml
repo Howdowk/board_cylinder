@@ -82,6 +82,7 @@ flutter:
     - assets/pdfs/
     - assets/cylinder3.obj
     - assets/board.obj
+    - assets/smallcylinder.obj
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

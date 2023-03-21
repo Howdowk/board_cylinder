@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:object_3d/object_3d.dart';
 
 import '/flutter_flow/flutter_flow_media_display.dart';
@@ -66,6 +67,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 alignment: AlignmentDirectional(-0.04, -0.52),
                 child: Container(
                   child: Object3D(
+                    color: Colors.orange,
                     size: Size(0, 0),
                     path: "assets/board.obj",
                   ),
@@ -77,8 +79,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 alignment: AlignmentDirectional(0.0, -0.22),
                 child: Container(
                   child: Object3D(
-                    size: Size(0, 0),
-                    path: "assets/cylinder3.obj",
+                    color: Colors.blue,
+                    size: Size(0, 100),
+                    path: "assets/smallcylinder.obj",
                   ),
                   width: 100.0,
                   height: 100.0,
