@@ -1,15 +1,12 @@
-import 'package:auto_size_text/auto_size_text.dart';
+//library that has color
 import 'package:object_3d/object_3d.dart';
 
-import '/flutter_flow/flutter_flow_media_display.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_video_player.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
+import 'package:flutter_cube/flutter_cube.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({Key? key}) : super(key: key);
@@ -23,6 +20,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
+
+  //intializer for obj
+  Object betterboard = Object(
+    fileName: "assets/betterboard.obj", //3d model of a board
+    scale: Vector3(2, 2, 2),
+    lighting: true,
+  );
+  Object board = Object(
+    // 2d model of a board (cant see other side)
+    fileName: "assets/board.obj",
+    scale: Vector3(2, 2, 2),
+  );
+  Object cylinder = Object(
+    fileName: "assets/cylinder.obj", // file path
+    scale: Vector3(.5, .5, .5), // size
+    position: Vector3(0, .45, 0), // postion
+    lighting: true,
+  );
+
+  // object 3d stuff
+  // Object3D cylinder2 = Object3D(
+  //   color: Colors.blue,
+  //   size: Size(100, 100),
+  //   path: "assets/smallcylinder.obj",
+  // );
+  // Object3D board3d = Object3D(
+  //   color: Colors.redAccent,
+  //   size: Size(0, 0),
+  //   path: "assets/board.obj",
+  // );
 
   @override
   void initState() {
@@ -50,7 +77,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           'Cylinder and Board',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
-                color: Colors.white,
+                color: Colors.red,
                 fontSize: 22.0,
               ),
         ),
@@ -65,28 +92,22 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             children: [
               Align(
                 alignment: AlignmentDirectional(-0.04, -0.52),
-                child: Container(
-                  child: Object3D(
-                    color: Colors.orange,
-                    size: Size(0, 0),
-                    path: "assets/board.obj",
-                  ),
-                  width: 100.0,
-                  height: 100.0,
-                ),
+                child: Container(child: Cube(
+                  onSceneCreated: (Scene scene) {
+                    scene.world.add(betterboard);
+                    scene.world.add(cylinder);
+                    scene.camera.zoom = 2;
+                    scene.light.setColor(Colors.blue, 1, 1, 1);
+                  },
+                )),
               ),
-              Align(
-                alignment: AlignmentDirectional(0.0, -0.22),
-                child: Container(
-                  child: Object3D(
-                    color: Colors.blue,
-                    size: Size(0, 100),
-                    path: "assets/smallcylinder.obj",
-                  ),
-                  width: 100.0,
-                  height: 100.0,
-                ),
-              ),
+              //Code from a different library that has color.
+              // Align(
+              //   alignment: AlignmentDirectional(0.0, -0.22),
+              //   child: Row(
+              //     children: [Container(child: board3d)],
+              //   ),
+              // ),
             ],
           ),
         ),
